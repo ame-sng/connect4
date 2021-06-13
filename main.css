@@ -1,0 +1,94 @@
+
+.board{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+width: 500px;
+height: 450px;
+margin: auto;
+margin-top: 200px;
+background: #4a8add;
+
+}
+
+
+
+.column {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 430px;
+    width: 100px;
+
+
+}
+
+
+.cell {
+    background: #1f3dc2;
+    display: flex;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    margin: 0 10px;
+}
+
+.column:hover .cell{
+    background: linear-gradient(rgb(214, 119, 233), rgb(148, 245, 119));
+} 
+
+
+
+
+/* CSS GRID */
+/* .board{
+    background: black;
+    grid-template-columns: 150px 150px 150px 150px 150px;
+    grid-template-rows: 70px 70px 70px 70px 70px 70px;
+    grid-template-areas:
+    "header header header header header"
+    "main main main main main";
+    column-gap: 5px;
+    justify-content: space-around;
+    justify-items: center;
+    width: 500px;
+    height: 450px;  
+    grid-auto-flow: column;
+
+}    
+
+.drop {
+    grid-area: header;
+    background: blue;
+    height: 70px;
+    width: 70px;
+    grid-column: 1;
+    grid-row: 1 / 5;
+}
+
+.column {
+    background: chartreuse;
+    height: 170px;
+    width: 70px;
+    grid-area: main;
+
+} */
+
+
+/* Create a dropcell */
+/* .dropall {
+    text-align: center;
+}
+
+.drop {
+    display: inline-block;
+    margin-top: 120px;
+    margin-left: 2px;
+    margin-right: 2px;
+    height: 30px;
+    width: 90px;
+    background: white;
+    border: 1px solid black;
+} */
