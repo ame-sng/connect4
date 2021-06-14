@@ -154,3 +154,25 @@ VERTICAL
 Pull out each column into an array
 Check each array to see if there are 4 of same type inside
 Check that all 4 are consecutive
+
+DIAGONAL RIGHT
+
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "A"],
+    ["?", "?", "?", "A", "A"],
+    ["?", "A", "A", "B", "B"],
+    ["?", "A", "B", "A", "A"],
+    ["B", "A", "A", "B", "A"] 
+
+down left
+
+DIAGONAL LEFT
+
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "A", "?", "B", "A"],
+    ["?", "A", "A", "B", "B"],
+    ["?", "A", "B", "A", "A"],
+    ["B", "A", "A", "B", "A"] 
+
+down right
