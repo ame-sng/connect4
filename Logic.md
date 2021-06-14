@@ -58,6 +58,8 @@ col === += (loop)
 ["?", "?", "?", "?", "?"],
 ["?", "?", "?", "?", "?"],
 ["?", "A", "A", "A", "A"]   [5][1], [5][2], [5][3], [5][4]
+
+
     
 `Vertical`
 row === += (loop)
@@ -69,10 +71,11 @@ col === same
 ["?", "?", "A", "?", "?"],  [3][2]
 ["?", "?", "A", "?", "?"],  [4][2]
 ["?", "?", "A", "?", "?"]   [5][2]
+
     
 `Diagonal Right`
-row === -= (loop)
-col === += (loop)
+row === += (loop)
+col === -= (loop)
 ["?", "?", "?", "?", "?"],
 ["?", "?", "?", "?", "?"],
 ["?", "?", "?", "?", "A"],                          [2][4]
@@ -127,3 +130,27 @@ _Once placed, it is next player's turn_
 User clicks restart button
 _Code needed: change all spaces to original_
 
+
+
+HORIZONTAL
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["B", "A", "A", "A", "A"],
+    ["B", "A", "A", "B", "A"] 
+
+Check each row to see if there are 4 of same type inside
+Check that all 4 are consecutive
+    
+VERTICAL
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "A", "?", "?", "?"],
+    ["?", "A", "?", "?", "?"],
+    ["?", "A", "B", "A", "A"],
+    ["B", "A", "A", "B", "A"] 
+
+Pull out each column into an array
+Check each array to see if there are 4 of same type inside
+Check that all 4 are consecutive
