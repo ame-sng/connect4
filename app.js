@@ -20,10 +20,10 @@ const game = {
   board: [
     ["?", "?", "B", "?", "B"],
     ["?", "?", "B", "B", "?"],
-    ["B", "A", "B", "?", "?"],
+    ["B", "A", "B", "A", "?"],
     ["?", "B", "A", "B", "?"],
-    ["?", "?", "B", "A", "?"],
-    ["?", "B", "A", "B", "?"],
+    ["?", "A", "B", "A", "?"],
+    ["?", "B", "A", "?", "A"],
   ],
   totalRows: 6,
   totalCols: 5,
@@ -129,7 +129,7 @@ console.log("checkVer: " + checkVertical(game.board));
 const diagonalDown = (coordinates) => {
   return {
     rowIndex: coordinates.rowIndex++,
-    colIndex: coordinates.colIndex++,
+    colIndex: coordinates.colIndex--,
   };
 };
 
@@ -167,41 +167,46 @@ console.log(checkDD(game.board));
 //===========================
 
 //* get coordinates for column
-const diagonalDown = (coordinates) => {
+const diagonalUp = (coordinates) => {
   return {
-    rowIndex: coordinates.rowIndex++,
+    rowIndex: coordinates.rowIndex--,
     colIndex: coordinates.colIndex++,
   };
 };
 
-//!just need to check first 6 [0][0],[1][0],[2][0],[0][1],[1][1],[2],[1]
-//thanks to Samuel for helping out!
-const checkDD = (xBoard) => {
-  for (let row = 0; row < game.board.length - 3; row++) {
-    for (let col = 0; col < game.board[0].length - 3; col++) {
-      const newArray = [];
-      for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
-        let arraySix = diagonalDown({
-          rowIndex: row + arrLoop,
-          colIndex: col + arrLoop,
-        });
-        let index = xBoard[arraySix.rowIndex][arraySix.colIndex];
-        newArray.push(index);
-        console.log(arraySix);
-        console.log(index);
-        console.log(newArray);
-      }
-      if (countSame(newArray) === "A") {
-        return "Player1 wins";
-      } else if (countSame(newArray) === "B") {
-        return "Player2 wins";
+//!just need to check first 6 [3][0],[4][0],[5][0],[3][1],[4][1],[5],[1]
+
+const checkDU = (xBoard) => {
+    for (let row = game.board.length - 1; row > game.board.length - 4; row--) {
+      for (let col = 0; col < game.board[0].length - 3; col++) {
+        console.log(row)
+        console.log(col)
+          const newArray = [];
+        for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
+          let arraySix = diagonalUp({
+            rowIndex: row - arrLoop,
+            colIndex: col + arrLoop,
+          });
+          let index = xBoard[arraySix.rowIndex][arraySix.colIndex];
+          newArray.push(index);
+          console.log(arraySix);
+          console.log(index);
+          console.log(newArray);
+        }
+        if (countSame(newArray) === "A") {
+          return "Player1 wins";
+        } else if (countSame(newArray) === "B") {
+          return "Player2 wins";
+        }
       }
     }
-  }
-  return empty;
-};
+    return empty;
+  };
+  
+  console.log(checkDU(game.board));
+  
 
-console.log(checkDD(game.board));
+
 
 // const main = () => {
 
@@ -317,3 +322,31 @@ console.log(checkDD(game.board));
 // };
 
 // console.log("checkDL: " + checkDL(game.board));
+// const checkDU = (xBoard) => {
+//   for (let row = 0; row < game.board.length -3; row++) {
+//     for (let col = game.board[0].length - 1; col > game.board[0].length - 3; col--) {
+//       console.log(row)
+//       console.log(col)
+//         const newArray = [];
+//       for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
+//         let arraySix = diagonalUp({
+//           rowIndex: row + arrLoop,
+//           colIndex: col + arrLoop,
+//         });
+//         let index = xBoard[arraySix.rowIndex][arraySix.colIndex];
+//         newArray.push(index);
+//         console.log(arraySix);
+//         console.log(index);
+//         console.log(newArray);
+//       }
+//       if (countSame(newArray) === "A") {
+//         return "Player1 wins";
+//       } else if (countSame(newArray) === "B") {
+//         return "Player2 wins";
+//       }
+//     }
+//   }
+//   return empty;
+// };
+
+// console.log(checkDU(game.board));
