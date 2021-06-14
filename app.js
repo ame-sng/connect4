@@ -59,7 +59,6 @@ const countSame = (array) => {
   }
 };
 
-
 //========================
 //? CHECK HORIZONTAL WIN
 //========================
@@ -98,11 +97,10 @@ const callCol = (xBoard, colIndex) => {
     let column = vertical(columnStart); //for each row, +1 while col is same
     // console.log(vertical(columnStart))
     const index = xBoard[column.rowIndex][column.colIndex];
-    console.log(index)
+    console.log(index);
     newArray.push(index);
   }
   return newArray;
-  
 };
 
 // console.log("callCol: " + callCol(game.board, 1));
@@ -129,47 +127,81 @@ console.log("checkVer: " + checkVertical(game.board));
 
 //* get coordinates for column
 const diagonalDown = (coordinates) => {
-    return {
-      rowIndex: coordinates.rowIndex ++,
-      colIndex: coordinates.colIndex ++,
-    };
+  return {
+    rowIndex: coordinates.rowIndex++,
+    colIndex: coordinates.colIndex++,
   };
- 
+};
+
 //!just need to check first 6 [0][0],[1][0],[2][0],[0][1],[1][1],[2],[1]
 //thanks to Samuel for helping out!
-  const checkDD = (xBoard) => {
-
-    for (let row = 0; row < game.board.length - 3; row++) {
-        for(let col = 0; col < game.board[0].length - 3; col++){
-            const newArray = [];
-            for(let arrLoop = 0; arrLoop < 4; arrLoop++){
-                let arraySix = diagonalDown({rowIndex: row+arrLoop, colIndex: col+arrLoop});
-                let index = xBoard[arraySix.rowIndex][arraySix.colIndex];
-            newArray.push(index);
-            console.log(arraySix);
-            console.log(index);
-            console.log(newArray)
-        }
-        if (countSame(newArray) === "A") {
-            return "Player1 wins";
-          } else if (countSame(newArray) === "B") {
-            return "Player2 wins";
-          }
-        
-        }
+const checkDD = (xBoard) => {
+  for (let row = 0; row < game.board.length - 3; row++) {
+    for (let col = 0; col < game.board[0].length - 3; col++) {
+      const newArray = [];
+      for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
+        let arraySix = diagonalDown({
+          rowIndex: row + arrLoop,
+          colIndex: col + arrLoop,
+        });
+        let index = xBoard[arraySix.rowIndex][arraySix.colIndex];
+        newArray.push(index);
+        console.log(arraySix);
+        console.log(index);
+        console.log(newArray);
+      }
+      if (countSame(newArray) === "A") {
+        return "Player1 wins";
+      } else if (countSame(newArray) === "B") {
+        return "Player2 wins";
+      }
     }
-    return empty;
-  };
+  }
+  return empty;
+};
 
-  console.log(checkDD(game.board))
-
-
+console.log(checkDD(game.board));
 
 //===========================
 //? CHECK DIAGONAL UP WIN
 //===========================
 
+//* get coordinates for column
+const diagonalDown = (coordinates) => {
+  return {
+    rowIndex: coordinates.rowIndex++,
+    colIndex: coordinates.colIndex++,
+  };
+};
 
+//!just need to check first 6 [0][0],[1][0],[2][0],[0][1],[1][1],[2],[1]
+//thanks to Samuel for helping out!
+const checkDD = (xBoard) => {
+  for (let row = 0; row < game.board.length - 3; row++) {
+    for (let col = 0; col < game.board[0].length - 3; col++) {
+      const newArray = [];
+      for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
+        let arraySix = diagonalDown({
+          rowIndex: row + arrLoop,
+          colIndex: col + arrLoop,
+        });
+        let index = xBoard[arraySix.rowIndex][arraySix.colIndex];
+        newArray.push(index);
+        console.log(arraySix);
+        console.log(index);
+        console.log(newArray);
+      }
+      if (countSame(newArray) === "A") {
+        return "Player1 wins";
+      } else if (countSame(newArray) === "B") {
+        return "Player2 wins";
+      }
+    }
+  }
+  return empty;
+};
+
+console.log(checkDD(game.board));
 
 // const main = () => {
 
@@ -255,7 +287,6 @@ const diagonalDown = (coordinates) => {
 // };
 
 // console.log("checkDR: " + checkDR(game.board));
-
 
 //   const callDL = (xBoard, row, col) => {
 //     const newArray = [];
