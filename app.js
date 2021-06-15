@@ -28,80 +28,115 @@ const game = {
   ],
   totalRows: 6,
   totalCols: 5,
+  turn() {
+    player1turn = true;
+    player1turn ? player1 : player2;
+  }
 };
 
-////////////////////////
-//* Generate board
-////////////////////////
+
+/////////////////////////////
+//* Generate and render board
+/////////////////////////////
 
 //cell is game.board[r][c]
 //append cell to column
 //append column to board
 
 let cellprop = {
-  background: "#1f3dc2",
-  display: "flex",
-  height: "70px",
-  width: "70px",
+  "background": "#1f3dc2",
+  "display": "flex",
+  "height": "70px",
+  "width": "70px",
   "border-radius": "100%",
-  margin: "0 10px",
+  "margin": "2px 5px",
   "justify-content": "center",
   "align-items": "center",
-  // "color": "#1f3dc2"
+  "border": "1px solid #447eca",
+  "box-shadow":"inset 0px 0px 0px 8px #447eca",
+  //"color": "#1f3dc2"
 };
 
-//! add function that allows when column is clicked, for cell to turn colour.
+
+
+
 const generateBoard = (xBoard) => {
   for (c = 0; c < xBoard[0].length; c++) {
     const $column = $("<div>")
       .addClass("column")
-      .attr("id", "col-" + c).on("click", fillIn);;
+      .attr("id", "col-" + c);
     $(".board").append($column);
+
     for (r = 0; r < xBoard.length; r++) {
       const $cell = $("<div>")
         .attr("class", "cell-" + r)
         .css(cellprop)
-        .text(game.board[r][c])
+        // .text(game.board[r][c])
       $column.append($cell);
+            
     }
   }
 };
 
-// const cellValue = () => {
-//     for(r = 0; r<game.board.length; r++){
-//         for(c=0; c<game.board[0].length; c++){
-//             let cell = game.board[r][c]
-//             console.log(cell);
-//         }
-//     }
-//     }
-//     cellValue();
+
+
+//! changes the html components
+// loop through array. If index displays A or B, change html colour
+const renderUpdate = () => {
+ for (let row = 0; row < game.board.length; row++){
+   for(let col = 0; col < game.board[0].length; col++){
+     const cell = game.board[row][col];
+     if (cell === "A"){
+      ($(`#col-${col} > .cell-${row}`)).css({"background-image": "linear-gradient(50deg,rgb(89, 14, 104), rgb(210, 97, 233)"});
+      console.log($(`#col-${col} > .cell-${row}`));
+     } else if( cell === "B"){
+      ($(`#col-${col} > .cell-${row}`)).css({"background-image": "linear-gradient(50deg,rgb(50, 124, 27), rgb(148, 245, 119)"});
+     } else if(cell === "?"){
+      ($(`#col-${col} > .cell-${row}`)).css({"background": "#1f3dc2"});
+     }
+   }
+ }
+}
+  
 
 ////////////////////////
 //* Click Event
 ////////////////////////
 
-//!function click to identify player turn
-//!pass through game.board into browser
-let player1turn = true;
 
-const fillIn = (event) => {
-  let $column = $(event.currentTarget);
-  if (player1turn === true) {
-    $column
-      .children() //!figure out how to change the lowermost cell (loop?)
-      .css({
-        "background-color": "black",
-        color: "white",
-      })
-      .text("A");
-    player1turn = false;
-  }
-  else if (player1turn === false) {
-    $column.children().css({ "background-color": "greenyellow", color: "black" }).text("B");
-    player1turn = true;
-  }
-};
+//! add function that allows when column is clicked, for cell to turn colour.
+//!pass through game.board into browser (render)
+
+// for (let i = game.board[0].length - 1; i >= 0; i--){
+//   console.log(i)
+// }
+
+ 
+// const fillIn  (event) => {
+//   let $column = $(event.)
+// }
+
+
+// const fillIn = (event) => {
+//   let $column = $(event.target);
+//   let $cell = $column.children()
+//   $cell.css({
+//         "background-color": "black",
+//         color: "white",
+//       })
+//       .text("A");
+  //   player1turn = false;
+  //   if ($cell.text() === "A" || "B"){
+  //     return;
+  //   }
+  //   }  //! why doesn' return work
+  // }
+  // else if (player1turn === false) {
+  //   $column.children().eq(5)
+  //   .css({ "background-color": "greenyellow", color: "black" }).text("B");
+  //   player1turn = true;
+  // }
+// };
 
 //when click on column, the lowermost cell turns colour
 // let $column = $(".column");
@@ -148,7 +183,7 @@ const checkHorizontal = (xBoard) => {
   return empty;
 };
 
-console.log("checkH: " + checkHorizontal(game.board));
+// console.log("checkH: " + checkHorizontal(game.board));
 
 //========================
 //? CHECK VERTICAL WIN
@@ -170,7 +205,7 @@ const callCol = (xBoard, colIndex) => {
     let column = vertical(columnStart); //for each row, +1 while col is same
     // console.log(vertical(columnStart))
     const index = xBoard[column.rowIndex][column.colIndex];
-    console.log(index);
+    // console.log(index);
     newArray.push(index);
   }
   return newArray;
@@ -181,7 +216,7 @@ const callCol = (xBoard, colIndex) => {
 //* loop over each column
 const checkVertical = (xBoard) => {
   for (let col = 0; col < game.board[0].length; col++) {
-    console.log(callCol(xBoard, col));
+    // console.log(callCol(xBoard, col));
     let results = callCol(xBoard, col);
     if (countSame(results) === "A") {
       return player1;
@@ -192,7 +227,7 @@ const checkVertical = (xBoard) => {
   return empty;
 };
 
-console.log("checkVer: " + checkVertical(game.board));
+// console.log("checkVer: " + checkVertical(game.board));
 
 //===========================
 //? CHECK DIAGONAL DOWN WIN
@@ -219,9 +254,9 @@ const checkDD = (xBoard) => {
         });
         let index = xBoard[diagonalArray.rowIndex][diagonalArray.colIndex];
         newArray.push(index);
-        console.log(diagonalArray);
-        console.log(index);
-        console.log(newArray);
+        // console.log(diagonalArray);
+        // console.log(index);
+        // console.log(newArray);
       }
       if (countSame(newArray) === "A") {
         return player1;
@@ -233,7 +268,7 @@ const checkDD = (xBoard) => {
   return empty;
 };
 
-console.log(checkDD(game.board));
+// console.log(checkDD(game.board));
 
 //===========================
 //? CHECK DIAGONAL UP WIN
@@ -252,8 +287,8 @@ const diagonalUp = (coordinates) => {
 const checkDU = (xBoard) => {
   for (let row = game.board.length - 1; row > game.board.length - 4; row--) {
     for (let col = 0; col < game.board[0].length - 3; col++) {
-      console.log(row);
-      console.log(col);
+      // console.log(row);
+      // console.log(col);
       const newArray = [];
       for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
         let diagonalArray = diagonalUp({
@@ -262,9 +297,9 @@ const checkDU = (xBoard) => {
         });
         let index = xBoard[diagonalArray.rowIndex][diagonalArray.colIndex];
         newArray.push(index);
-        console.log(diagonalArray);
-        console.log(index);
-        console.log(newArray);
+        // console.log(diagonalArray);
+        // console.log(index);
+        // console.log(newArray);
       }
       if (countSame(newArray) === "A") {
         return player1;
@@ -276,7 +311,7 @@ const checkDU = (xBoard) => {
   return empty;
 };
 
-console.log(checkDU(game.board));
+// console.log(checkDU(game.board));
 
 //===========================
 //? WINNER WINNER
@@ -325,7 +360,10 @@ const results = (xBoard) => {
 
 const main = () => {
   generateBoard(game.board);
+  results(game.board);
+  renderUpdate();
 };
+
 $(main);
 
 //====================================

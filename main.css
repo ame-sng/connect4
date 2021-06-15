@@ -39,7 +39,7 @@ border-radius: 10px;
 
 
 /* .cell {
-    background: #1f3dc2;
+    background: #202e6daf;
     display: flex;
     height: 70px;
     width: 70px;
@@ -59,10 +59,12 @@ border-radius: 10px;
     font-family:'Racing Sans One', cursive;
     border-radius: 10px;
     background-color: rgba(10, 209, 116, 0.2);
+    
 }
 
 .column:hover {
     background: linear-gradient(50deg,rgb(210, 97, 233), rgb(148, 245, 119));
+    cursor: pointer;
 } 
 
 
