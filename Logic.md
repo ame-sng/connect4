@@ -155,7 +155,7 @@ Pull out each column into an array
 Check each array to see if there are 4 of same type inside
 Check that all 4 are consecutive
 
-DIAGONAL RIGHT
+DIAGONAL DOWN
 
     ["?", "?", "?", "?", "?"],
     ["?", "?", "?", "?", "A"],
@@ -166,7 +166,7 @@ DIAGONAL RIGHT
 
 down left
 
-DIAGONAL LEFT
+DIAGONAL UP
 
     ["?", "?", "?", "?", "?"],
     ["?", "?", "?", "?", "?"],
@@ -175,4 +175,20 @@ DIAGONAL LEFT
     ["?", "A", "B", "A", "A"],
     ["B", "A", "A", "B", "A"] 
 
-down right
+up right
+
+
+
+    ["A", "B", "A", "B", "A"],
+    ["B", "B", "A", "A", "B"],
+    ["B", "A", "B", "B", "A"],
+    ["A", "B", "B", "B", "A"],
+    ["B", "B", "A", "A", "A"],
+    ["A", "A", "B", "B", "B"],
+
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"],
+    ["?", "?", "?", "?", "?"] 
