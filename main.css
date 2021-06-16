@@ -1,13 +1,36 @@
 
-body{
-    background: linear-gradient(90deg,rgb(199, 119, 233), rgb(119, 226, 245),rgb(245, 184, 119));
+html{
+    background: linear-gradient(50deg,rgb(199, 119, 233), rgb(119, 226, 245),rgb(245, 184, 119));
+    min-height: 100%
+
 }
 h1 {
     text-align: center;
     font-size: 60px;
     font-family: 'Racing Sans One', cursive;
-    margin-top: 80px;
+    margin-top: 50px;
 }
+
+h2 {
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Racing Sans One', cursive;
+    margin-top: 10px;
+    width: 400px;
+    margin: auto;
+    color: rgb(214, 119, 233);
+    background-color: black
+}
+
+.player1 {
+    color: rgb(214, 119, 233);
+}
+
+.player2 {
+    color: rgb(148, 245, 119);
+}
+
+
 
 .board{
 display: flex;
@@ -17,12 +40,23 @@ align-items: center;
 width: 550px;
 height: 470px;
 margin: auto;
-margin-top: 50px;
+margin-top: 10px;
 background: #0926c6af;
 border: 1px solid rgba(0, 0, 0, 0.55);
 border-radius: 10px;
 }
 
+.cellprop {
+    background: #073bad72;
+    display: flex;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin: 2px 5px;
+    justify-content: center;
+    align-items: center;
+    box-shadow:inset 0px 0px 0px 7px #144abeb6;
+  }
 
 
 .column {
@@ -36,7 +70,21 @@ border-radius: 10px;
     border-radius: 10px;
 }
 
+/* .player1cell{
+    background-image: linear-gradient(50deg,rgb(115, 15, 134), rgb(214, 119, 233));
+    display: flex;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin: 2px 5px;
+    justify-content: center;
+    align-items: center;
+    box-shadow:inset 0px 0px 0px 7px #144abeb6;
+}
 
+.player2cell{
+    background-image: linear-gradient(50deg,rgb(50, 124, 27), rgb(148, 245, 119));
+} */
 
 .button-center{
     text-align: center;
@@ -46,16 +94,22 @@ border-radius: 10px;
 }
 
 .restart{
-    font-size: 35px;
+    font-size: 20px;
     font-family:'Racing Sans One', cursive;
     border-radius: 10px;
-    background-color: rgba(10, 209, 116, 0.2);
-    
+    background-color: black;
+    color:white;
+    padding: 5px 10px;
+}
+.restart:hover{
+    cursor: pointer;
+    background-color: rgba(61, 70, 65, 0.2);
+    color: black;
 }
 
 .column:hover {
-    /* background: linear-gradient(50deg,rgba(197, 8, 235, 0.39), rgba(70, 248, 16, 0.39)); */
-    background: rgba(90, 107, 236, 0.413);
+    background: linear-gradient(50deg,rgba(197, 8, 235, 0.39), rgba(70, 248, 16, 0.39));
+    /* background: rgba(90, 107, 236, 0.413); */
     cursor: pointer;
 } 
 
@@ -81,7 +135,7 @@ border-radius: 10px;
     padding: 10px;
     border: 1px solid #888;
     width: 70%;
-    height: 17%;
+    height: 25%;
     font-size: 40px;
     font-family: 'Racing Sans One', cursive;
     text-align: center;
@@ -104,6 +158,21 @@ border-radius: 10px;
     text-decoration: none;
     cursor: pointer;
   }
+
+.restart2:hover{
+    cursor: pointer;
+    background-color: rgb(111, 114, 112);
+    color: white;
+}
+
+.restart2{
+    font-size: 20px;
+    font-family:'Racing Sans One', cursive;
+    border-radius: 10px;
+    background-color: rgb(179, 97, 34);
+    color:white;
+    padding: 5px 10px;
+}
 
 
 /* CSS GRID */
