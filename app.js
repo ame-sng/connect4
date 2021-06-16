@@ -26,14 +26,7 @@ const game = {
     ["?", "?", "?", "?", "?"],
     ["?", "?", "?", "?", "?"],
   ],
-  totalRows: 6,
-  totalCols: 5,
-  turn() {
-    player1turn = true;
-    player1turn ? player1 : player2;
-  }
 };
-
 
 /////////////////////////////
 //* Generate and render board
@@ -44,20 +37,17 @@ const game = {
 //append column to board
 
 let cellprop = {
-  "background": "#1f3dc2",
+  "background": "#073bad72",
   "display": "flex",
   "height": "70px",
   "width": "70px",
-  "border-radius": "100%",
+  "border-radius": "50%",
   "margin": "2px 5px",
   "justify-content": "center",
   "align-items": "center",
-  "border": "1px solid #447eca",
-  "box-shadow":"inset 0px 0px 0px 8px #447eca",
+  "box-shadow":"inset 0px 0px 0px 7px #144abeb6",
   //"color": "#1f3dc2"
 };
-
-
 
 
 const generateBoard = (xBoard) => {
@@ -73,29 +63,29 @@ const generateBoard = (xBoard) => {
         .css(cellprop)
         // .text(game.board[r][c])
       $column.append($cell);
-            
+      
     }
-  }
+  } $(".column").on("click", whenClicked) 
 };
 
 
-
-//! changes the html components
+// changes the html components
 // loop through array. If index displays A or B, change html colour
 const renderUpdate = () => {
  for (let row = 0; row < game.board.length; row++){
    for(let col = 0; col < game.board[0].length; col++){
-     const cell = game.board[row][col];
-     if (cell === "A"){
-      ($(`#col-${col} > .cell-${row}`)).css({"background-image": "linear-gradient(50deg,rgb(89, 14, 104), rgb(210, 97, 233)"});
+     const cellPosition = game.board[row][col];
+     if (cellPosition === "A"){
+      ($(`#col-${col} > .cell-${row}`)).css({"background-image": "linear-gradient(50deg,rgb(115, 15, 134), rgb(214, 119, 233)"});
       console.log($(`#col-${col} > .cell-${row}`));
-     } else if( cell === "B"){
+     } else if( cellPosition === "B"){
       ($(`#col-${col} > .cell-${row}`)).css({"background-image": "linear-gradient(50deg,rgb(50, 124, 27), rgb(148, 245, 119)"});
-     } else if(cell === "?"){
-      ($(`#col-${col} > .cell-${row}`)).css({"background": "#1f3dc2"});
-     }
+      } //else if(cellPosition === "?"){
+    //   ($(`#col-${col} > .cell-${row}`)).css({"background": "#073bad72","box-shadow":"inset 0px 0px 0px 7px #144abeb6"});
+    //  }
    }
  }
+ results(game.board);
 }
   
 
@@ -104,42 +94,40 @@ const renderUpdate = () => {
 ////////////////////////
 
 
-//! add function that allows when column is clicked, for cell to turn colour.
-//!pass through game.board into browser (render)
+//! add function that allows when column is clicked, for position to be updated in array
+// loop such that when bottom row index is full, update the next
+//! if all filled, prevent loop
+//column is event.currentTarget
+//when column is clicked, if row:[5] is empty, return row:[5], if it is filled; return and run loop for row:[4] etc..
+//! r is not updating with new loop
+//! not returning even if colIndex === A || B
 
-// for (let i = game.board[0].length - 1; i >= 0; i--){
-//   console.log(i)
-// }
+let player1turn = true;
+let counter = 1;
 
- 
-// const fillIn  (event) => {
-//   let $column = $(event.)
-// }
+const whenClicked = (event) => {
+  const colIndex = $(event.currentTarget).index()
+  console.log(colIndex);
+  for(let r = game.board.length - 1; r > -1; r--){
+    if (game.board[r][colIndex] === "?"){
+      if (counter%2 !== 0){
+      game.board[r][colIndex] = "A";
+      counter += 1
+      console.log("counter: " + counter);
+      renderUpdate();
+      return;
+    } else if (counter % 2 === 0) {
+      game.board[r][colIndex] = "B"
+      counter += 1
+      console.log("counter: " + counter);
+      renderUpdate();
+      return;
+    }
+    } 
+  }
+    
+}
 
-
-// const fillIn = (event) => {
-//   let $column = $(event.target);
-//   let $cell = $column.children()
-//   $cell.css({
-//         "background-color": "black",
-//         color: "white",
-//       })
-//       .text("A");
-  //   player1turn = false;
-  //   if ($cell.text() === "A" || "B"){
-  //     return;
-  //   }
-  //   }  //! why doesn' return work
-  // }
-  // else if (player1turn === false) {
-  //   $column.children().eq(5)
-  //   .css({ "background-color": "greenyellow", color: "black" }).text("B");
-  //   player1turn = true;
-  // }
-// };
-
-//when click on column, the lowermost cell turns colour
-// let $column = $(".column");
 
 ////////////////////////
 //* Winning combos
@@ -338,21 +326,41 @@ const results = (xBoard) => {
     if (result != empty) {
       if (result == player1) {
         console.log("Player 1 has won!");
-        alert("Player 1 has won!"); //! EXTRA: change to modal
+        // alert("Player 1 has won!"); //! EXTRA: change to modal
+        $("#myModal").css("display", "block");
+        $("p").text("Player 1 has won!");
+        $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
         return;
       } else if (result == player2) {
-        console.log("Player 1 has won!");
-        alert("Player 2 has won!");
+        console.log("Player 2 has won!");
+        // alert("Player 2 has won!");
+        $("#myModal").css("display", "block");
+        $("p").text("Player 2 has won!");
+        $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
         return;
       }
     }
   }
   if (fullBoard(xBoard) === true) {
     console.log("It's a tie!");
-    alert("It's a tie!");
+    // alert("It's a tie!");
+    $("#myModal").css("display", "block");
+        $("p").text("It's a tie!");
+        $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
     return;
   }
 };
+
+
+////////////////////////
+//* RESTART GAME
+////////////////////////
+
+const restart = () => 
+{$("button").on("click", () => {
+  location.reload();
+})}
+
 
 ////////////////////////
 //* RENDER
@@ -360,10 +368,9 @@ const results = (xBoard) => {
 
 const main = () => {
   generateBoard(game.board);
-  results(game.board);
   renderUpdate();
+  restart();
 };
-
 $(main);
 
 //====================================
@@ -503,3 +510,44 @@ $(main);
 // };
 
 // console.log(checkDU(game.board));
+
+ // turn() {
+  //   player1turn = true;
+  //   player1turn ? player1 : player2;
+  // }
+
+
+
+// for (let i = game.board[0].length - 1; i >= 0; i--){
+//   console.log(i)
+// }
+
+ 
+// const fillIn  (event) => {
+//   let $column = $(event.)
+// }
+
+
+// const fillIn = (event) => {
+//   let $column = $(event.target);
+//   let $cell = $column.children()
+//   $cell.css({
+//         "background-color": "black",
+//         color: "white",
+//       })
+//       .text("A");
+  //   player1turn = false;
+  //   if ($cell.text() === "A" || "B"){
+  //     return;
+  //   }
+  //   }  //! why doesn' return work
+  // }
+  // else if (player1turn === false) {
+  //   $column.children().eq(5)
+  //   .css({ "background-color": "greenyellow", color: "black" }).text("B");
+  //   player1turn = true;
+  // }
+// };
+
+//when click on column, the lowermost cell turns colour
+// let $column = $(".column");

@@ -18,8 +18,8 @@ width: 550px;
 height: 470px;
 margin: auto;
 margin-top: 50px;
-background: #4a8add;
-border: 1px solid black;
+background: #0926c6af;
+border: 1px solid rgba(0, 0, 0, 0.55);
 border-radius: 10px;
 }
 
@@ -38,15 +38,6 @@ border-radius: 10px;
 
 
 
-/* .cell {
-    background: #202e6daf;
-    display: flex;
-    height: 70px;
-    width: 70px;
-    border-radius: 100%;
-    margin: 0 10px;
-} */
-
 .button-center{
     text-align: center;
     position: relative;
@@ -63,11 +54,56 @@ border-radius: 10px;
 }
 
 .column:hover {
-    background: linear-gradient(50deg,rgb(210, 97, 233), rgb(148, 245, 119));
+    /* background: linear-gradient(50deg,rgba(197, 8, 235, 0.39), rgba(70, 248, 16, 0.39)); */
+    background: rgba(90, 107, 236, 0.413);
     cursor: pointer;
 } 
 
-
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: black;
+    color: rgb(245, 129, 41);
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 70%;
+    height: 17%;
+    font-size: 40px;
+    font-family: 'Racing Sans One', cursive;
+    text-align: center;
+    border: 2px solid rgb(158, 105, 82)
+  }
+  
+  /* The Close Button */
+  .close {
+    color: rgb(179, 97, 34);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Racing Sans One', cursive;
+    
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
 
 /* CSS GRID */
