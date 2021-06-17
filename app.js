@@ -189,7 +189,7 @@ const vertical = (coordinates) => {
 //*push column into new array to check if all same
 const callCol = (xBoard, colIndex) => {
   const newArray = [];
-  for (let i = 0; i < game.board[0].length; i++) {
+  for (let i = -1; i < game.board[0].length; i++) {
     //console.log(i)
     let columnStart = { rowIndex: i, colIndex };
     let column = vertical(columnStart); //for each row, +1 while col is same
@@ -197,6 +197,7 @@ const callCol = (xBoard, colIndex) => {
     const index = xBoard[column.rowIndex][column.colIndex];
     // console.log(index);
     newArray.push(index);
+    console.log("newArray: " + newArray)
   }
   return newArray;
 };
@@ -363,7 +364,7 @@ const restart = () => {
       }console.log(game.board);
       renderUpdate();
       counter = 1;
-      $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)");
+      $("h2").text("Player 1 goes first!").css("color", "rgb(214, 119, 233)");
       $("audio#buttonsound")[0].play();
       $(".slots").removeClass("player1cell");
       $(".slots").removeClass("player2cell");
@@ -390,6 +391,7 @@ const hidemodal = () => {
 ////////////////////////
 
 const main = () => {
+  $(".letsgo").on("click", ()=>{$("#instructions").css("display", "none")})
   renderUpdate();
   generateBoard(game.board);
   results(game.board);

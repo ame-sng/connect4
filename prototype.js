@@ -42,6 +42,26 @@ const game = {
 //append cell to column
 //append column to board
 
+
+let boardChosen = game.board1
+
+
+const boardSize = () => {
+    if (boardChosen === game.board1){
+        $(".board").addClass("board6x7");
+        $(".column").addClass("column6x7");
+    }
+}
+
+// const boardSize = () => {
+//     if (boardChosen === game.board1){
+//         $(".board").attr("class","board6x7");
+//         $(".column").attr("class","column6x7");
+//     }
+// }
+
+//*generateBoard function okay!
+
 const generateBoard = (xBoard) => {
   for (c = 0; c < xBoard[0].length; c++) {
     const $column = $("<div>")
@@ -54,40 +74,46 @@ const generateBoard = (xBoard) => {
         .addClass("cellprop")
         // .text(game.board[r][c])
       $column.append($cell);
-    }
-  } clicks();
+      
+    }clicks();
+    restartClick();  
+  }boardSize(); 
+  
 };
 
 const clicks = () => {
   $(".column").on("click", whenClicked);
   $(".column").on("click", () => {$("audio#coindrop")[0].play()});
   // const $restart = $(".restart");
-  $(".restart").on("click", restart);
-  $(".restart2").on("click", hidemodal);
+//   $(".restart").on("click", restart);
+//   $(".restart2").on("click", hidemodal);
 }
 
+
+//*renderUpdate board is okay!
 // changes the html components
 // loop through array. If index displays A or B, change html colour
 const renderUpdate = () => {
- for (let row = 0; row < game.board.length; row++){
-   for(let col = 0; col < game.board[0].length; col++){
-     const cellPosition = game.board[row][col];
+ for (let row = 0; row < game.board1.length; row++){
+   for(let col = 0; col < game.board1[0].length; col++){
+     const cellPosition = game.board1[row][col];
      if (cellPosition === PLAYER1){
       ($(`#col-${col} > .cell-${row}`)).addClass("player1cell");
       console.log($(`#col-${col} > .cell-${row}`));
      } else if( cellPosition === PLAYER2){
       ($(`#col-${col} > .cell-${row}`)).addClass("player2cell")
       } 
+      
    }
- }
- results(game.board);
+   
+ } console.log(game.board1)
+ results(game.board1);
 }
   
 
 ////////////////////////
 //* Click Event
 ////////////////////////
-
 
 // add function that allows when column is clicked, for position to be updated in array
 // loop such that when bottom row index is full, update the next
@@ -97,27 +123,27 @@ const renderUpdate = () => {
 
 let counter = 1;
 
+//*whenClicked function is okay
 
 const whenClicked = (event) => {
   const colIndex = $(event.currentTarget).index()
-  console.log(colIndex);
-  for(let r = game.board.length - 1; r > -1; r--){
-    if (game.board[r][colIndex] === EMPTY){
+//   console.log(colIndex);
+  for(let r = game.board1.length - 1; r > -1; r--){
+    if (game.board1[r][colIndex] === EMPTY){
       if (counter%2 !== 0){
-      game.board[r][colIndex] = PLAYER1;
+      game.board1[r][colIndex] = PLAYER1;
       counter += 1;
       $("h2").text("Player 2, pick a slot").css("color", "rgb(148, 245, 119)")
       // .addClass("player2")
       console.log("counter: " + counter);
-      console.log(game.board)
+    //   console.log(game.board1)
       renderUpdate();
       return;
     } else if (counter % 2 === 0) {
-      game.board[r][colIndex] = PLAYER2;
+      game.board1[r][colIndex] = PLAYER2;
       counter += 1;
       console.log("counter: " + counter);
       $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)")
-      console.log(game.board)
       // .addClass("player1")
       renderUpdate();
      
@@ -153,14 +179,16 @@ const countSame = (array) => {
       ) {
         return array[i];
       }
-    }
-  }
+    } 
+  } 
 };
 
 //========================
 //? CHECK HORIZONTAL WIN
 //========================
 
+
+//*horizontal function okay!
 //*check if there's a horizontal win
 const checkHorizontal = (xBoard) => {
   for (const each of xBoard) {
@@ -178,25 +206,24 @@ const checkHorizontal = (xBoard) => {
 //========================
 //? CHECK VERTICAL WIN
 //========================
-
+//! NOT OKAY
 //* get coordinates for column
 const vertical = (coordinates) => {
-  return { rowIndex: coordinates.rowIndex + 1, colIndex: coordinates.colIndex };
+  return {rowIndex: coordinates.rowIndex + 1, colIndex: coordinates.colIndex };
 };
-
-//console.log(diffRowSameCol({rowIndex: 1,colIndex: 0}))
 
 //*push column into new array to check if all same
 const callCol = (xBoard, colIndex) => {
   const newArray = [];
-  for (let i = 0; i < game.board[0].length; i++) {
-    //console.log(i)
-    let columnStart = { rowIndex: i, colIndex };
+  for (let i = -1; i < xBoard[0].length; i++) {
+    // console.log(i)
+    let columnStart = {rowIndex: i, colIndex};
     let column = vertical(columnStart); //for each row, +1 while col is same
     // console.log(vertical(columnStart))
     const index = xBoard[column.rowIndex][column.colIndex];
-    // console.log(index);
+    console.log("index: " + index);
     newArray.push(index);
+    console.log("newArray: " + newArray)
   }
   return newArray;
 };
@@ -205,8 +232,8 @@ const callCol = (xBoard, colIndex) => {
 
 //* loop over each column
 const checkVertical = (xBoard) => {
-  for (let col = 0; col < game.board[0].length; col++) {
-    // console.log(callCol(xBoard, col));
+  for (let col = 0; col < xBoard[0].length; col++) {
+    // console.log(xBoard, col);
     let results = callCol(xBoard, col);
     if (countSame(results) === PLAYER1) {
       return PLAYER1;
@@ -217,12 +244,12 @@ const checkVertical = (xBoard) => {
   return EMPTY;
 };
 
-// console.log("checkVer: " + checkVertical(game.board));
+// console.log("checkVer: " + checkVertical(game.board1));
 
 //===========================
 //? CHECK DIAGONAL DOWN WIN
 //===========================
-
+//* DD is okay!
 //* get coordinates for column
 const diagonalDown = (coordinates) => {
   return {
@@ -231,11 +258,10 @@ const diagonalDown = (coordinates) => {
   };
 };
 
-//!just need to check first 6 [0][0],[1][0],[2][0],[0][1],[1][1],[2],[1]
-//thanks to Samuel for helping out!
+//!just need to check first 6 
 const checkDD = (xBoard) => {
-  for (let row = 0; row < game.board.length - 3; row++) {
-    for (let col = 0; col < game.board[0].length - 3; col++) {
+  for (let row = 0; row < xBoard.length - 3; row++) {
+    for (let col = 0; col < xBoard[0].length - 3; col++) {
       const newArray = [];
       for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
         let diagonalArray = diagonalDown({
@@ -260,7 +286,7 @@ const checkDD = (xBoard) => {
 //===========================
 //? CHECK DIAGONAL UP WIN
 //===========================
-
+//* DU is okay!
 //* get coordinates for column
 const diagonalUp = (coordinates) => {
   return {
@@ -269,11 +295,11 @@ const diagonalUp = (coordinates) => {
   };
 };
 
-//!just need to check first 6 [3][0],[4][0],[5][0],[3][1],[4][1],[5],[1]
+//!just need to check first 6
 
 const checkDU = (xBoard) => {
-  for (let row = game.board.length - 1; row > game.board.length - 4; row--) {
-    for (let col = 0; col < game.board[0].length - 3; col++) {
+  for (let row = xBoard.length - 1; row > xBoard.length - 4; row--) {
+    for (let col = 0; col < xBoard[0].length - 3; col++) {
       const newArray = [];
       for (let arrLoop = 0; arrLoop < 4; arrLoop++) {
         let diagonalArray = diagonalUp({
@@ -353,14 +379,21 @@ const results = (xBoard) => {
 //* RESTART GAME
 ////////////////////////
 
+//* Restart Okay!
 
+const restartClick = () => {
+$(".restart").on("click", restart);
+$(".restart2").on("click", hidemodal);
+}
 
 const restart = () => {
-  for(let i = 0; i< game.board.length; i++){
-      for(let j = 0; j< game.board[0].length; j++){
-        game.board[i][j]= EMPTY;
+    let xBoard = game.board1
+  for(let i = 0; i< xBoard.length; i++){
+      for(let j = 0; j< xBoard[0].length; j++){
+        xBoard[i][j]= EMPTY;
         }
-      }console.log(game.board);
+      }
+    //   console.log(xBoard);
       renderUpdate();
       counter = 1;
       $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)");
@@ -370,11 +403,13 @@ const restart = () => {
 }
 
 const hidemodal = () => {
-  for(let i = 0; i< game.board.length; i++){
-    for(let j = 0; j< game.board[0].length; j++){
-      game.board[i][j]= EMPTY;
+    let xBoard = game.board1
+  for(let i = 0; i< xBoard.length; i++){
+    for(let j = 0; j< xBoard[0].length; j++){
+      xBoard[i][j]= EMPTY;
       }
-    }console.log(game.board);
+    }
+    // console.log(xBoard);
     renderUpdate();
     counter = 1;
     $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)");
@@ -390,9 +425,12 @@ const hidemodal = () => {
 ////////////////////////
 
 const main = () => {
-  renderUpdate();
-  generateBoard(game.board);
-  results(game.board);
+    
+    generateBoard(game.board1);
+    
+    results(game.board1);
+    
+    
 };
 $(main);
 
