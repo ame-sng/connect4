@@ -186,19 +186,16 @@ border-radius: 10px;
 }
 
 @media (max-width: 500px) {
-    h2{
-        margin-top: 5px;
-    }
 
     .modal-content{
-        height: 30%;
+        height: 40%;
     }
     .board{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      width: 410px;
+      width: 400px;
       height: 350px;
       margin: auto;
       margin-top: 10px;
@@ -247,9 +244,9 @@ border-radius: 10px;
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          height: 335px;
-          width: 100px;
-          padding: 10px;
+          height: 340px;
+          width: 95px;
+          padding: 5px;
           border-radius: 10px;
       }
   }
