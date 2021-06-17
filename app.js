@@ -48,24 +48,23 @@ const generateBoard = (xBoard) => {
       .addClass("column")
       .attr("id", "col-" + c);
     $(".board").append($column);
-
     for (r = 0; r < xBoard.length; r++) {
       const $cell = $("<div>")
-        .attr("class", "cell-" + r)
+        .attr("class", "cell-" + r).addClass("slots")
         .addClass("cellprop")
         // .text(game.board[r][c])
       $column.append($cell);
-      
     }
-  } $(".column").on("click", whenClicked);
+  } clicks();
+};
+
+const clicks = () => {
+  $(".column").on("click", whenClicked);
   $(".column").on("click", () => {$("audio#coindrop")[0].play()});
   // const $restart = $(".restart");
   $(".restart").on("click", restart);
-  $(".restart").on("click", () => {$("audio#buttonsound")[0].play()});
   $(".restart2").on("click", hidemodal);
-  $(".restart2").on("click", () => {$("audio#buttonsound")[0].play()});
-};
-
+}
 
 // changes the html components
 // loop through array. If index displays A or B, change html colour
@@ -74,13 +73,11 @@ const renderUpdate = () => {
    for(let col = 0; col < game.board[0].length; col++){
      const cellPosition = game.board[row][col];
      if (cellPosition === PLAYER1){
-      ($(`#col-${col} > .cell-${row}`)).css({"background-image": "linear-gradient(50deg,rgb(115, 15, 134), rgb(214, 119, 233)"});
+      ($(`#col-${col} > .cell-${row}`)).addClass("player1cell");
       console.log($(`#col-${col} > .cell-${row}`));
      } else if( cellPosition === PLAYER2){
-      ($(`#col-${col} > .cell-${row}`)).css({"background-image": "linear-gradient(50deg,rgb(50, 124, 27), rgb(148, 245, 119)"});
-      } else if(cellPosition === EMPTY){
-       ($(`#col-${col} > .cell-${row}`)).css({"background": "#073bad72","box-shadow":"inset 0px 0px 0px 7px #144abeb6"});
-     }
+      ($(`#col-${col} > .cell-${row}`)).addClass("player2cell")
+      } 
    }
  }
  results(game.board);
@@ -112,6 +109,7 @@ const whenClicked = (event) => {
       $("h2").text("Player 2, pick a slot").css("color", "rgb(148, 245, 119)")
       // .addClass("player2")
       console.log("counter: " + counter);
+      console.log(game.board)
       renderUpdate();
       return;
     } else if (counter % 2 === 0) {
@@ -119,6 +117,7 @@ const whenClicked = (event) => {
       counter += 1;
       console.log("counter: " + counter);
       $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)")
+      console.log(game.board)
       // .addClass("player1")
       renderUpdate();
      
@@ -365,6 +364,9 @@ const restart = () => {
       renderUpdate();
       counter = 1;
       $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)");
+      $("audio#buttonsound")[0].play();
+      $(".slots").removeClass("player1cell");
+      $(".slots").removeClass("player2cell");
 }
 
 const hidemodal = () => {
@@ -377,6 +379,9 @@ const hidemodal = () => {
     counter = 1;
     $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)");
   $(".modal").css("display","none");
+  $(".slots").removeClass("player1cell");
+      $(".slots").removeClass("player2cell");
+  $("audio#buttonsound")[0].play();
 }
 
 
@@ -387,7 +392,6 @@ const hidemodal = () => {
 const main = () => {
   renderUpdate();
   generateBoard(game.board);
-
   results(game.board);
 };
 $(main);
