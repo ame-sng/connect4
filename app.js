@@ -325,6 +325,7 @@ const results = (xBoard) => {
         $("#myModal").css("display", "block");
         $("p").text("Player 1 has won!");
         $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
+        $("audio#audiobkgd")[0].pause();
         $("audio#winning")[0].play();
         return;
       } else if (result == PLAYER2) {
@@ -333,6 +334,7 @@ const results = (xBoard) => {
         $("#myModal").css("display", "block");
         $("p").text("Player 2 has won!");
         $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
+        $("audio#audiobkgd")[0].pause();
         $("audio#winning")[0].play();
         return;
       }
@@ -344,6 +346,7 @@ const results = (xBoard) => {
     $("#myModal").css("display", "block");
         $("p").text("It's a tie!");
         $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
+        $("audio#audiobkgd")[0].pause();
         $("audio#tie")[0].play();
     return;
   }
@@ -366,6 +369,7 @@ const restart = () => {
       counter = 1;
       $("h2").text("Player 1 goes first!").css("color", "rgb(225, 72, 125)");
       $("audio#buttonsound")[0].play();
+      $("audio#audiobkgd")[0].play();
       $(".slots").removeClass("player1cell");
       $(".slots").removeClass("player2cell");
 }
@@ -383,6 +387,7 @@ const hidemodal = () => {
   $(".slots").removeClass("player1cell");
       $(".slots").removeClass("player2cell");
   $("audio#buttonsound")[0].play();
+  $("audio#audiobkgd")[0].play();
 }
 
 
@@ -395,6 +400,11 @@ const main = () => {
   renderUpdate();
   generateBoard(game.board);
   results(game.board);
+  $(document).on('keydown', function(event) {
+    if (event.key == "Escape") {
+      $("audio#audiobkgd")[0].pause();
+    }
+});
 };
 $(main);
 

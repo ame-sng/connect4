@@ -184,6 +184,7 @@ border-radius: 10px;
   .fp-h2{
     color: rgb(245, 129, 41);
     font-size: 35px;
+    width: 70%;
   }
   
   .fp-close {
@@ -200,10 +201,10 @@ border-radius: 10px;
 .fp-content {
     background-color: black;
     margin: auto;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #888;
     width: 70%;
-    height: 40%;
+    height: 50%;
     font-family: 'Racing Sans One', cursive;
     text-align: center;
     border: 2px solid rgb(245, 129, 41)
@@ -283,6 +284,7 @@ border-radius: 10px;
     border-color: rgb(179, 97, 34);
 }
 
+
 @media (max-width: 500px) {
 
     .modal-content{
@@ -293,10 +295,10 @@ border-radius: 10px;
         background-image: url("images/C4header.png");
         background-repeat: no-repeat;
         justify-content: center;
-        height: 76px;
-        width: 640px;
+        /* height: 76px;
+        width: 640px; */
         margin: 30px auto;
-        background-size: 80%;
+        background-size: 70%;
     }
 
     h2 {
