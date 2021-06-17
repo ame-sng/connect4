@@ -1,39 +1,42 @@
-
 html{
-    background: linear-gradient(50deg,rgb(199, 119, 233), rgb(119, 226, 245),rgb(245, 184, 119));
+    /* background: linear-gradient(50deg,rgb(199, 119, 233), rgb(119, 226, 245),rgb(245, 184, 119)); */
     min-height: 100%;
-    /* background-image: url("images/bkgd.png"); */
-
+    height: auto;
+    background-image: url("images/cnnect4.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
 }
 h1 {
     text-align: center;
-    font-size: 60px;
+    font-size: 70px;
     font-family: 'Racing Sans One', cursive;
-    margin-top: 50px;
+    margin-top: 0 auto;
     margin-bottom: 10px;
+}
+
+.C4header{
+    background-image: url("images/C4header.png");
+    background-repeat: no-repeat;
+    justify-content: center;
+    height: 76px;
+    width: 640px;
+    margin: 30px auto;
 }
 
 h2 {
     text-align: center;
     font-size: 25px;
     font-family: 'Racing Sans One', cursive;
-    width: 400px;
-    margin: 20px auto 0px;
-    color: rgb(214, 119, 233);
-    background-color: black
+    width: 550px;
+    margin: 30px auto 10px;
+    color: rgb(225, 72, 125);
+    background-color: rgb(0, 0, 0, 0.8)
 }
 
-.instructions{
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Racing Sans One', cursive;
-    width: 550px;
-    margin: auto;
-    color: rgb(0, 0, 0);
-}
 
 .player1 {
-    color: rgb(214, 119, 233);
+    color: rgb(196, 86, 17);
 }
 
 .player2 {
@@ -51,8 +54,8 @@ width: 550px;
 height: 470px;
 margin: 0 auto;
 margin-top: 10px;
-background: #0926c6af;
-border: 1px solid rgba(0, 0, 0, 0.55);
+background: #333b6aec;
+border: 1px solid rgba(37, 180, 216, 0.55);
 border-radius: 10px;
 }
 
@@ -72,7 +75,7 @@ border-radius: 10px;
 
 
 .cellprop {
-    background: #073bad72;
+    /* background: hsla(220, 52%, 31%, 0.139); */
     display: flex;
     height: 70px;
     width: 70px;
@@ -80,7 +83,7 @@ border-radius: 10px;
     margin: 2px 5px;
     justify-content: center;
     align-items: center;
-    box-shadow:inset 0px 0px 0px 7px #144abeb6;
+    box-shadow:inset 0px 0px 0px 4px #2f4a859e;
   }
 
 
@@ -89,9 +92,9 @@ border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 450px;
+    height: 460px;
     width: 100px;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
 }
 
@@ -107,7 +110,7 @@ border-radius: 10px;
 }
 
 .player1cell{
-    background-image: linear-gradient(50deg,rgb(115, 15, 134), rgb(214, 119, 233));
+    background-image: linear-gradient(50deg,rgb(196, 86, 17), rgb(214, 119, 233));
     display: flex;
     height: 70px;
     width: 70px;
@@ -115,11 +118,11 @@ border-radius: 10px;
     margin: 2px 5px;
     justify-content: center;
     align-items: center;
-    box-shadow:inset 0px 0px 0px 7px #144abeb6;
+    box-shadow:inset 0px 0px 0px 4px #144abeb6;
 }
 
 .player2cell{
-    background-image: linear-gradient(50deg,rgb(50, 124, 27), rgb(148, 245, 119));
+    background-image: linear-gradient(50deg,rgb(11, 105, 99), rgb(235, 245, 119));
     display: flex;
     height: 70px;
     width: 70px;
@@ -127,7 +130,7 @@ border-radius: 10px;
     margin: 2px 5px;
     justify-content: center;
     align-items: center;
-    box-shadow:inset 0px 0px 0px 7px #144abeb6;
+    box-shadow:inset 0px 0px 0px 4px #144abeb6;
 }
 
 .button-center{
@@ -138,23 +141,23 @@ border-radius: 10px;
 }
 
 .restart{
-    font-size: 20px;
+    font-size: 25px;
     font-family:'Racing Sans One', cursive;
     border-radius: 10px;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     color:white;
     padding: 5px 10px;
    
 }
 .restart:hover{
     cursor: pointer;
-    background-color: rgba(61, 70, 65, 0.2);
+    background-color: rgba(202, 220, 210, 0.516);
     color: black;
 }
 
 .column:hover {
-    background: linear-gradient(50deg,rgba(197, 8, 235, 0.39), rgba(70, 248, 16, 0.39));
-    /* background: rgba(90, 107, 236, 0.413); */
+    /* background: linear-gradient(50deg,rgba(197, 8, 235, 0.2), rgba(248, 70, 16, 0.2)); */
+    background: rgba(11, 15, 46, 0.413);
     cursor: pointer;
 } 
 

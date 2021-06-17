@@ -116,7 +116,7 @@ const whenClicked = (event) => {
       game.board[r][colIndex] = PLAYER2;
       counter += 1;
       console.log("counter: " + counter);
-      $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)")
+      $("h2").text("Player 1, pick a slot").css("color", "rgb(225, 72, 125)")
       console.log(game.board)
       // .addClass("player1")
       renderUpdate();
@@ -364,7 +364,7 @@ const restart = () => {
       }console.log(game.board);
       renderUpdate();
       counter = 1;
-      $("h2").text("Player 1 goes first!").css("color", "rgb(214, 119, 233)");
+      $("h2").text("Player 1 goes first!").css("color", "rgb(225, 72, 125)");
       $("audio#buttonsound")[0].play();
       $(".slots").removeClass("player1cell");
       $(".slots").removeClass("player2cell");
@@ -378,7 +378,7 @@ const hidemodal = () => {
     }console.log(game.board);
     renderUpdate();
     counter = 1;
-    $("h2").text("Player 1, pick a slot").css("color", "rgb(214, 119, 233)");
+    $("h2").text("Player 1 goes first!").css("color", "rgb(225, 72, 125)");
   $(".modal").css("display","none");
   $(".slots").removeClass("player1cell");
       $(".slots").removeClass("player2cell");
