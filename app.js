@@ -396,7 +396,9 @@ const hidemodal = () => {
 ////////////////////////
 
 const main = () => {
-  $(".letsgo").on("click", ()=>{$("#instructions").css("display", "none")})
+  $(".letsgo").on("click", ()=>{
+    $("#instructions").css("display", "none");
+    $("audio#audiobkgd")[0].play();})
   renderUpdate();
   generateBoard(game.board);
   results(game.board);
