@@ -23,15 +23,15 @@ const game = {
     ["?", "?", "?", "?", "?"],
     ["?", "?", "?", "?", "?"],
   ],
-  board1: [
-    ["?", "?", "?", "?", "?", "?", "?"],
-    ["?", "?", "?", "?", "?", "?", "?"],
-    ["?", "?", "?", "?", "?", "?", "?"],
-    ["?", "?", "?", "?", "?", "?", "?"],
-    ["?", "?", "?", "?", "?", "?", "?"],
-    ["?", "?", "?", "?", "?", "?", "?"],
+  // board1: [
+  //   ["?", "?", "?", "?", "?", "?", "?"],
+  //   ["?", "?", "?", "?", "?", "?", "?"],
+  //   ["?", "?", "?", "?", "?", "?", "?"],
+  //   ["?", "?", "?", "?", "?", "?", "?"],
+  //   ["?", "?", "?", "?", "?", "?", "?"],
+  //   ["?", "?", "?", "?", "?", "?", "?"],
     
-  ],
+  // ],
 };
 
 /////////////////////////////
@@ -73,10 +73,10 @@ const renderUpdate = () => {
    for(let col = 0; col < game.board[0].length; col++){
      const cellPosition = game.board[row][col];
      if (cellPosition === PLAYER1){
-      ($(`#col-${col} > .cell-${row}`)).addClass("player1cell");
+      ($(`#col-${col} > .cell-${row}`)).addClass("player1cell"); //finds specific position on html to change the CSS to player 1
       console.log($(`#col-${col} > .cell-${row}`));
      } else if( cellPosition === PLAYER2){
-      ($(`#col-${col} > .cell-${row}`)).addClass("player2cell")
+      ($(`#col-${col} > .cell-${row}`)).addClass("player2cell")//finds specific position on html to change the CSS to player 2
       } 
    }
  }
@@ -104,10 +104,11 @@ const whenClicked = (event) => {
   for(let r = game.board.length - 1; r > -1; r--){
     if (game.board[r][colIndex] === EMPTY){
       if (counter%2 !== 0){
-      game.board[r][colIndex] = PLAYER1;
-      counter += 1;
-      $("h2").text("Player 2, pick a slot").css("color", "rgb(148, 245, 119)")
-      // .addClass("player2")
+      game.board[r][colIndex] = PLAYER1; //updates the array
+      counter += 1; //increases counter so it is next player's turn
+      $("h2").text("Player 2, pick a slot")
+      // .css("color", "rgb(148, 245, 119)")
+      .attr("class","player2");
       console.log("counter: " + counter);
       console.log(game.board)
       renderUpdate();
@@ -116,7 +117,9 @@ const whenClicked = (event) => {
       game.board[r][colIndex] = PLAYER2;
       counter += 1;
       console.log("counter: " + counter);
-      $("h2").text("Player 1, pick a slot").css("color", "rgb(225, 72, 125)")
+      $("h2").text("Player 1, pick a slot")
+      // .css("color", "rgb(225, 72, 125)")
+      .attr("class","player1");
       console.log(game.board)
       // .addClass("player1")
       renderUpdate();
@@ -127,8 +130,6 @@ const whenClicked = (event) => {
   }
   
 }
-
-
 
 
 ////////////////////////
@@ -333,7 +334,7 @@ const results = (xBoard) => {
         // alert("Player 2 has won!");
         $("#myModal").css("display", "block");
         $("p").text("Player 2 has won!");
-        $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
+        $(".close").on("click", ()=>{$("#myModal").css("display", "none")});
         $("audio#audiobkgd")[0].pause();
         $("audio#winning")[0].play();
         return;
@@ -345,7 +346,7 @@ const results = (xBoard) => {
     // alert("It's a tie!");
     $("#myModal").css("display", "block");
         $("p").text("It's a tie!");
-        $(".close").on("click", ()=>{$("#myModal").css("display", "none")})
+        $(".close").on("click", ()=>{$("#myModal").css("display", "none")});
         $("audio#audiobkgd")[0].pause();
         $("audio#tie")[0].play();
     return;
@@ -367,7 +368,8 @@ const restart = () => {
       }console.log(game.board);
       renderUpdate();
       counter = 1;
-      $("h2").text("Player 1 goes first!").css("color", "rgb(225, 72, 125)");
+      $("h2").text("Player 1 goes first!").attr("class","player1");
+      // .css("color", "rgb(225, 72, 125)");
       $("audio#buttonsound")[0].play();
       $("audio#audiobkgd")[0].play();
       $(".slots").removeClass("player1cell");
@@ -382,7 +384,8 @@ const hidemodal = () => {
     }console.log(game.board);
     renderUpdate();
     counter = 1;
-    $("h2").text("Player 1 goes first!").css("color", "rgb(225, 72, 125)");
+    $("h2").text("Player 1 goes first!").attr("class","player1");
+    // .css("color", "rgb(225, 72, 125)");
   $(".modal").css("display","none");
   $(".slots").removeClass("player1cell");
       $(".slots").removeClass("player2cell");
